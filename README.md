@@ -3,8 +3,8 @@
 ## Rationale
 
 The idea is to build a sequence of data processing logic isolated in distinct containers. The objective here is to
-delegate the data wrangling task to some kubernetes `initContainers`. Once all subsequent taks are done the model
-is ran in a "normal" containers.
+delegate the data wrangling task to some kubernetes `Pod.spec.initContainers`. Once all subsequent taks are done the model
+is ran in `Pod.spec.containers`.
 
 ## Installation
 
