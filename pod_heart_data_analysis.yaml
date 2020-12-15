@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: get-data
+spec:
+  containers:
+    - image: fbraza/get-data:v1
+      name: get-data
+      args:
+        - /bin/sh
+        - -c
+        - 'echo "Hello from container"; sleep 3600'
+      env:
+        - name: KAGGLE_USERNAME
+          valueFrom:
+              secretKeyRef:
+                key: username
+                name: kaggle-api
+        - name: KAGGLE_KEY
+          valueFrom:
+            secretKeyRef:
+              key: key
+              name: kaggle-api
