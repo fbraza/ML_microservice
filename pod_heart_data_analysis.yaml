@@ -6,10 +6,13 @@ spec:
   containers:
     - image: fbraza/get-data:v1
       name: get-data
+      volumeMounts:
+        - mountPath: /tmp/data
+          name: data
       args:
         - /bin/sh
         - -c
-        - 'echo "Hello from container"; sleep 3600'
+        - 'kaggle datasets download lava18/google-play-store-apps -F /tmp/data'
       env:
         - name: KAGGLE_USERNAME
           valueFrom:
@@ -21,3 +24,6 @@ spec:
             secretKeyRef:
               key: key
               name: kaggle-api
+  volumes:
+    - name: data
+      emptyDir: {}
